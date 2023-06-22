@@ -134,7 +134,7 @@ function GetProfile() {
               {profileData[0]?.username}'s Profile
             </h2>
             <button
-              className="addMedication"
+              className="addMedication largeButton"
               onClick={() => setAddMedicationFormVisible(true)}
             >
               Add Medication

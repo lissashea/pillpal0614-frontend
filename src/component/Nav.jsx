@@ -9,40 +9,69 @@ function Nav({ isLoggedIn }) {
         {isLoggedIn ? (
           <>
             <li>
-              <NavLink exact="true" to="/" className="nav-link" activeclassname="active">
+              <NavLink
+                exact="true"
+                to="/"
+                className="nav-link"
+                activeclassname="active"
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/profile" className="nav-link" activeclassname="active">
+              <NavLink
+                to="/profile"
+                className="nav-link"
+                activeclassname="active"
+              >
                 Profile
               </NavLink>
             </li>
             <li>
-              <NavLink to="/sign-out" className="nav-link" activeclassname="active">
-                Sign Out
+              <NavLink
+                to="/medication-table"
+                className="nav-link"
+                activeclassname="active"
+              >
+                Date & Time
               </NavLink>
             </li>
             <li>
-              <NavLink to="/medication-table" className="nav-link" activeclassname="active">
-                Medication Date/Time
+              <NavLink
+                to="/sign-out"
+                className="nav-link"
+                activeclassname="active"
+              >
+                Sign Out
               </NavLink>
             </li>
           </>
         ) : (
           <>
             <li>
-              <NavLink to="/sign-in" className="nav-link" activeclassname="active">
+              <NavLink
+                to="/sign-in"
+                className="nav-link"
+                activeclassname="active"
+              >
                 Sign In
               </NavLink>
             </li>
             <li>
-              <NavLink to="/sign-up" className="nav-link" activeclassname="active">
+              <NavLink
+                to="/sign-up"
+                className="nav-link"
+                activeclassname="active"
+              >
                 Sign Up
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about-us" className="nav-link" activeclassname="active">
+              <NavLink
+                to="/about-us"
+                className="nav-link"
+                activeclassname="active"
+              >
                 About Us
               </NavLink>
             </li>
