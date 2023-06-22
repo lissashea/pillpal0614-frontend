@@ -23,6 +23,11 @@ function Nav({ isLoggedIn }) {
                 Sign Out
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/medication-table" className="nav-link" activeclassname="active">
+                Medication Date/Time
+              </NavLink>
+            </li>
           </>
         ) : (
           <>
