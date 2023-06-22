@@ -24,8 +24,9 @@ This is the frontend application for the Medication Tracker project. It provides
 
 To run the application locally, follow these steps:
 
-1. Clone the repository: `git clone <repository-url>`
-2. Navigate to the project directory: `cd react-auth-client`
+1. Clone the repository: `git clone: https://github.com/lissashea/pillpal0614-frontend.git`
+
+2. Navigate to the project directory: `cd myapp`
 3. Install the dependencies: `npm install`
 4. Start the development server: `npm start`
 5. Open the application in your browser: `http://localhost:3000`
