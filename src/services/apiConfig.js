@@ -1,98 +1,85 @@
-const BASE_URL = "http://localhost:8000/api";
+import axios from 'axios';
+
+const BASE_URL = process.env.NODE_ENV === 'production'
+  ? 'https://pillpal-a113c55bba4b.herokuapp.com/api'
+  : 'http://localhost:8000/api';
 
 export async function fetchProfileData(token) {
-  const response = await fetch(`${BASE_URL}/profile/?cache=${Date.now()}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await axios.get(`${BASE_URL}/profile/?cache=${Date.now()}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch profile data");
+  }
 }
 
 export async function signUp(signUpData) {
-  const response = await fetch(`${BASE_URL}/register/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(signUpData),
-  });
-
-  if (!response.ok) {
+  try {
+    const response = await axios.post(`${BASE_URL}/register/`, signUpData);
+    const { token, user_id } = response.data;
+    return { token, user_id };
+  } catch (error) {
     throw new Error("Failed to sign up");
   }
-
-  const data = await response.json();
-  const { token, user_id } = data;
-  return { token, user_id };
 }
 
-
 export async function signIn(signInData) {
-  const response = await fetch(`${BASE_URL}/login/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(signInData),
-  });
-
-  if (!response.ok) {
+  try {
+    const response = await axios.post(`${BASE_URL}/login/`, signInData);
+    const { token, user_id } = response.data;
+    return { token, user_id };
+  } catch (error) {
     throw new Error("Failed to sign in");
   }
-
-  const data = await response.json();
-  const { token, user_id } = data;
-  return { token, user_id };
 }
 
 export async function addMedication(token, medicationData) {
-  const response = await fetch(`${BASE_URL}/profile/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(medicationData),
-  });
-  const responseData = await response.json();
-  return responseData;
+  try {
+    const response = await axios.post(`${BASE_URL}/profile/`, medicationData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to add medication. Please try again.");
+  }
 }
 
-export const updateMedication = (token, medicationId, updatedData) => {
-  return fetch(`${BASE_URL}/medications/update/${medicationId}/`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(updatedData),
-  })
-    .then((response) => response.json())
-    .catch((error) => {
-      throw new Error("Failed to update medication. Please try again.");
-    });
+export const updateMedication = async (token, medicationId, updatedData) => {
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}/medications/update/${medicationId}/`,
+      updatedData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to update medication. Please try again.");
+  }
 };
 
 export async function deleteMedication(token, medicationId) {
-  return fetch(`${BASE_URL}/medications/${medicationId}/`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else if (response.status === 404) {
-        throw new Error("Medication not found");
-      } else {
-        throw new Error("Failed to delete medication");
-      }
-    })
-    .catch((error) => {
-      throw new Error(error.message);
+  try {
+    const response = await axios.delete(`${BASE_URL}/medications/${medicationId}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      throw new Error("Medication not found");
+    } else {
+      throw new Error("Failed to delete medication");
+    }
+  }
 }

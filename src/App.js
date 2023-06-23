@@ -10,7 +10,6 @@ import Home from "./component/Home.jsx";
 import MedicationTable from "./component/MedicationTable.jsx";
 import { fetchProfileData } from "./services/apiConfig.js";
 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
