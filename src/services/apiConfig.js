@@ -38,7 +38,7 @@ export async function signIn(signInData) {
 
 export async function addMedication(token, medicationData) {
   try {
-    const response = await axios.post(`${BASE_URL}/profile/`, medicationData, {
+    const response = await axios.post(`${BASE_URL}/api/profile/`, medicationData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -52,7 +52,7 @@ export async function addMedication(token, medicationData) {
 export const updateMedication = async (token, medicationId, updatedData) => {
   try {
     const response = await axios.patch(
-      `${BASE_URL}/medications/update/${medicationId}/`,
+      `${BASE_URL}/api/medications/update/${medicationId}/`,
       updatedData,
       {
         headers: {
@@ -68,7 +68,7 @@ export const updateMedication = async (token, medicationId, updatedData) => {
 
 export async function deleteMedication(token, medicationId) {
   try {
-    const response = await axios.delete(`${BASE_URL}/medications/${medicationId}/`, {
+    const response = await axios.delete(`${BASE_URL}/api/medications/${medicationId}/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
