@@ -1,8 +1,11 @@
+import dotenv from 'dotenv';
 import axios from 'axios';
 
-const BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://pillpal-a113c55bba4b.herokuapp.com/'
-  : 'http://localhost:8000/api';
+
+dotenv.config();
+
+
+const BASE_URL = process.env.BASE_URL || 'http://localhost:8000/api';
 
 
 export async function fetchProfileData(token) {
