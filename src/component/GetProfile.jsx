@@ -12,6 +12,7 @@ import {
 import "./GetProfile.css";
 
 function GetProfile({ profileData, setProfileData }) {
+  // eslint-disable-next-line
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const token = localStorage.getItem("token");
   const [selectedMedication, setSelectedMedication] = useState(null);

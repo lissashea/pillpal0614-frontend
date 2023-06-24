@@ -1,7 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import MedicationRow from "./MedicationRow.jsx";
-import { fetchProfileData } from "../services/apiConfig.js"; // Update the import statement
+
 
 const MedicationTable = ({ profileData, handleTakenChange }) => {
   return (
