@@ -1,16 +1,11 @@
-import dotenv from 'dotenv';
+
 import axios from 'axios';
 
-
-dotenv.config();
-
-
-const BASE_URL = process.env.BASE_URL || 'http://localhost:8000/api';
-
+const BASE_URL = process.env.BASE_URL || 'http://localhost:8000';
 
 export async function fetchProfileData(token) {
   try {
-    const response = await axios.get(`${BASE_URL}/profile/?cache=${Date.now()}`, {
+    const response = await axios.get(`${BASE_URL}/api/profile/?cache=${Date.now()}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -23,7 +18,7 @@ export async function fetchProfileData(token) {
 
 export async function signUp(signUpData) {
   try {
-    const response = await axios.post(`${BASE_URL}/register/`, signUpData);
+    const response = await axios.post(`${BASE_URL}/api/register/`, signUpData);
     const { token, user_id } = response.data;
     return { token, user_id };
   } catch (error) {
@@ -33,7 +28,7 @@ export async function signUp(signUpData) {
 
 export async function signIn(signInData) {
   try {
-    const response = await axios.post(`${BASE_URL}/login/`, signInData);
+    const response = await axios.post(`${BASE_URL}/api/login/`, signInData);
     const { token, user_id } = response.data;
     return { token, user_id };
   } catch (error) {
