@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://pillpal-a113c55bba4b.herokuapp.com/api'
+  ? 'https://pillpal-a113c55bba4b.herokuapp.com/'
   : 'http://localhost:8000/api';
 
 
