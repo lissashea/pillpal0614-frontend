@@ -14,10 +14,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
   );
-  const [profileData, setProfileData] = useState(null); // Add state for profile data
+  const [profileData, setProfileData] = useState([]);
 
   useEffect(() => {
-    // Fetch profile data and set it to the state
     if (isLoggedIn) {
       fetchProfileData(localStorage.getItem("token"))
         .then((data) => {
@@ -35,20 +34,30 @@ function App() {
       <Nav isLoggedIn={isLoggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<SignIn onSignIn={() => setIsLoggedIn(true)} />} />
+        <Route
+          path="/sign-in"
+          element={<SignIn onSignIn={() => setIsLoggedIn(true)} />}
+        />
         <Route path="/sign-up" element={<SignUp />} />
         <Route
           path="/profile"
-          element={<GetProfile profileData={profileData} />} // Pass profileData to GetProfile
+          element={
+            <GetProfile
+              profileData={profileData}
+              setProfileData={setProfileData}
+            />
+          }
         />
         <Route
           path="/sign-out"
           element={<SignOut onSignOut={() => setIsLoggedIn(false)} />}
         />
-        <Route
-          path="/medication-table"
-          element={<MedicationTable profileData={profileData} />} // Pass profileData to MedicationTable
-        />
+        {isLoggedIn && (
+          <Route
+            path="/medication-table"
+            element={<MedicationTable profileData={profileData} />}
+          />
+        )}
       </Routes>
     </div>
   );

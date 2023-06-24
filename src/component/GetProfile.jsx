@@ -11,8 +11,7 @@ import {
 } from "../services/apiConfig.js";
 import "./GetProfile.css";
 
-function GetProfile() {
-  const [profileData, setProfileData] = useState(null);
+function GetProfile({ profileData, setProfileData }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const token = localStorage.getItem("token");
   const [selectedMedication, setSelectedMedication] = useState(null);
@@ -42,6 +41,7 @@ function GetProfile() {
     }
   }, [token]);
 
+
   const handleAddMedication = (medicationData) => {
     let userId = null;
     if (profileData && profileData.user && profileData.user.id) {
@@ -52,11 +52,20 @@ function GetProfile() {
       ...medicationData,
       user: userId,
     };
+
     addMedication(token, data)
       .then((responseData) => {
-        setProfileData((prevData) => [...prevData, responseData]);
-        console.log("Medication added successfully!");
-        setAddMedicationFormVisible(false); // Hide the add medication form after submission
+        // Fetch the updated profile data after adding a medication
+        fetchProfileData(token)
+          .then((data) => {
+            console.log("Medication added successfully!");
+            setAddMedicationFormVisible(false); // Hide the add medication form after submission
+            setIsLoggedIn(true);
+            setProfileData(data); // Update the profile data with the new data
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       })
       .catch((error) => {
         console.error("Error:", error);
