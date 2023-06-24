@@ -32,7 +32,7 @@ function SignUp() {
 
     signUp(serializedData)
       .then((data) => {
-        navigate("/signin"); // Navigate to the sign-in page ("/signin")
+        navigate("/sign-in"); // Navigate to the sign-in page ("/signin")
       })
       .catch((error) => {
         console.error("Error:", error);
