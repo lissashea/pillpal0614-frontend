@@ -1,9 +1,8 @@
 import axios from 'axios';
-const BASE_URL = 'http://localhost:8000/api'
 
-// const BASE_URL = process.env.NODE_ENV === 'production'
-//   ? 'https://pillpal-a113c55bba4b.herokuapp.com/api'
-//   : 'http://localhost:8000/api';
+const BASE_URL = process.env.NODE_ENV === 'production'
+  ? 'https://pillpal-a113c55bba4b.herokuapp.com/api'
+  : 'http://localhost:8000/api';
 
 
 export async function fetchProfileData(token) {
