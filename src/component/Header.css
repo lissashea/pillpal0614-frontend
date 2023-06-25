@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
-
+@import url('https://fonts.cdnfonts.com/css/avenir');
 * {
-  font-family: "Inter", sans-serif;
+  font-family: 'Avenir', sans-serif;
 }
 
 .header {
@@ -13,6 +12,8 @@
   border-left: 5px solid #51989b;
   border-right: 5px solid #51989b;
   border-top: 5px solid #51989b;
+  border-bottom: 5px solid #51989b;
+
 }
 
 .logo-container {
@@ -23,43 +24,29 @@
 }
 
 .logo-img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border: 2px solid #fff;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-}
 
-.nav-links li {
-  font-size: 1rem;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #51989b;
-}
 
 .time-container {
   background-color: #51989b;
   padding: 0.5rem 1rem;
+  border: 2px solid #fff;
 }
 
 .current-time {
   font-size: 2rem;
   color: #fff;
+  /* text-shadow:
+    -1px -1px 0 #053675,
+    1px -1px 0 #053675,
+    -1px 1px 0 #053675,
+    1px 1px 0 #053675; */
 }
 
 @media (max-width: 767px) {
@@ -73,17 +60,8 @@
   }
 
   .logo-img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .nav-links {
-    justify-content: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .nav-links li {
-    font-size: 0.9rem;
+    width: 100px;
+    height: 100px;
   }
 
   .current-time {
