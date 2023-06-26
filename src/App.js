@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./component/Header.jsx";
+// import AboutUs from "./component/AboutUs.jsx";
 import Nav from "./component/Nav.jsx";
 import SignUp from "./component/SignUp.jsx";
 import SignIn from "./component/SignIn.jsx";
@@ -35,6 +36,7 @@ function App() {
       <Nav isLoggedIn={isLoggedIn} />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* <Route path="/about-us" element={<AboutUs />} /> */}
         <Route
           path="/sign-in"
           element={<SignIn onSignIn={() => setIsLoggedIn(true)} />}

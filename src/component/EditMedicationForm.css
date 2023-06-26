@@ -51,11 +51,27 @@
   background-color: #2a5f61;
 }
 
-@media screen and (max-width: 480px) {
-  .add-medication-form-container
-  .edit-medication-form-container {
-    height: 100vh;
-    margin-top: 0;
+@media screen and (max-width: 767px) {
+
+  .edit-medication-form-title {
+    text-align: start;
+  }
+
+ form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .edit-medication-form-label {
+    text-align: center;
+  }
+  
+  .edit-medication-form-input,
+  .edit-medication-form-textarea,
+  .edit-medication-form-button {
+    width: 85%;
+    max-width: 300px; /* Adjust the max-width as needed */
   }
 }
 

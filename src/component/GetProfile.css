@@ -18,6 +18,7 @@
   color: #336e70;
   background-color: rgba(255, 255, 255, 0.8);
   font-weight: bold;
+  margin: 2rem;
   text-align: center;
   width: fit-content;
   font-family: "Inter", sans-serif;
@@ -25,6 +26,7 @@
   border-radius: 5px;
   border: #336e70 solid 2px;
 }
+
 
 .profile-data {
   margin-top: 2rem;
@@ -49,9 +51,30 @@
   border-collapse: collapse;
 }
 
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .addMedication.largeButton {
-  font-size: 1.2rem;
-  padding: 1rem 2rem;
+  background-color: #336e70; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 10px 24px;
+  margin-left: auto; 
+}
+
+.addMedication.largeButton:hover {
+  background-color: white;
+  color: black;
 }
 
 .profile-table th,
@@ -102,7 +125,6 @@
   margin-bottom: 10px;
 }
 
-/* Responsive Styles */
 @media screen and (max-width: 767px) {
   .profile-container {
     display: flex;
@@ -119,21 +141,16 @@
   }
 
   .profile-table-container {
-    display: none; /* Hide the table container */
-    overflow-x: auto;
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: none;
+    /* Hide the table container and its contents */
   }
 
   .profile-table {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
-    max-width: 400px; /* Added to limit the width of the table */
+    max-width: 400px;
   }
 
   .profile-table th {
@@ -195,15 +212,20 @@
   .add-medication-form-container,
   .edit-medication-form-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-top: 2rem;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 2rem;
     border-radius: 5px;
     width: 69%;
-    max-width: 400px; /* Added to limit the width of the forms */
+    max-width: 400px;
     margin-bottom: 2rem;
     flex-wrap: wrap;
   }
+
+ 
 }
 
 

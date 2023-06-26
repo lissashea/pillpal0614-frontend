@@ -50,35 +50,23 @@
 .add-medication-form-button:hover {
   background-color: #2a5f61;
 }
-/* Media Queries for Mobile Devices */
-@media screen and (max-width: 480px) {
-  .edit-medication-form-container,
-  .add-medication-form-container {
-    margin-top: 1rem;
-    width: 90%; /* Limit the width of the form container */
-    margin-left: auto;
-    margin-right: auto;
-  }
 
-  .edit-medication-form-title,
-  .add-medication-form-title {
-    font-size: 1.2rem;
-  }
+@media screen and (max-width: 767px) {
 
-  .edit-medication-form-label,
-  .add-medication-form-label {
-    font-size: 0.9rem;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .edit-medication-form-input,
-  .add-medication-form-input,
-  .edit-medication-form-textarea,
-  .add-medication-form-textarea {
-    font-size: 0.9rem;
-  }
+.add-medication-form-title {
+  text-align: start;
+}
 
-  .edit-medication-form-button,
-  .add-medication-form-button {
-    font-size: 0.9rem;
-  }
+.add-medication-form-input,
+.add-medication-form-textarea,
+.add-medication-form-button {
+  width: 85%;
+  max-width: 300px; /* Adjust the max-width as needed */
+}
 }

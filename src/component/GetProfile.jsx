@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import AddMedicationForm from "./AddMedicationForm.jsx";
 import EditMedicationForm from "./EditMedicationForm.jsx";
@@ -15,9 +18,13 @@ function GetProfile({ profileData, setProfileData }) {
   // eslint-disable-next-line
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const token = localStorage.getItem("token");
+  const [addModalIsOpen, setAddModalIsOpen] = useState(false);
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
   const [selectedMedication, setSelectedMedication] = useState(null);
+  // eslint-disable-next-line
   const [editMode, setEditMode] = useState(false);
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  // eslint-disable-next-line
   const [addMedicationFormVisible, setAddMedicationFormVisible] =
     useState(false);
   const navigate = useNavigate();
@@ -41,7 +48,6 @@ function GetProfile({ profileData, setProfileData }) {
       localStorage.setItem("token", token);
     }
   }, [token]);
-
 
   const handleAddMedication = (medicationData) => {
     let userId = null;
@@ -119,6 +125,7 @@ function GetProfile({ profileData, setProfileData }) {
   const handleEditButtonClick = (medication) => {
     setSelectedMedication(medication);
     setEditMode(true);
+    setEditModalIsOpen(true);
   };
 
   const handleDeleteMedication = (medicationId) => {
@@ -140,15 +147,18 @@ function GetProfile({ profileData, setProfileData }) {
       <div className="profile-container">
         {profileData ? (
           <div className="profile-data">
-            <h2 className="profile-title">
-              {profileData[0]?.username}'s Profile
-            </h2>
-            <button
-              className="addMedication largeButton"
-              onClick={() => setAddMedicationFormVisible(true)}
-            >
-              Add Medication
-            </button>
+            <div className="profile-header">
+              <h2 className="profile-title">
+                {profileData[0]?.username}'s Profile
+              </h2>
+              <button
+                className="addMedication largeButton"
+                onClick={() => setAddModalIsOpen(true)}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+                Add Medication
+              </button>
+            </div>
             {Array.isArray(profileData) && profileData.length > 0 ? (
               <table className="profile-table">
                 <thead>
@@ -203,24 +213,61 @@ function GetProfile({ profileData, setProfileData }) {
         ) : (
           <p>Loading profile data...</p>
         )}
-        {addMedicationFormVisible && (
+        <Modal
+          isOpen={addModalIsOpen}
+          onRequestClose={() => setAddModalIsOpen(false)}
+          contentLabel="Add Medication Modal"
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0, 0, 0, 0.75)",
+            },
+            content: {
+              top: "50%",
+              left: "50%",
+              right: "auto",
+              bottom: "auto",
+              marginRight: "-50%",
+              transform: "translate(-50%, -50%)",
+            },
+          }}
+        >
           <AddMedicationForm onAddMedication={handleAddMedication} />
-        )}
-        {editMode && selectedMedication && (
-          <>
-            <EditMedicationForm
-              medicationId={selectedMedication.id}
-              medicationData={selectedMedication}
-              onEditMedication={handleEditMedication}
-            />
-
-            {updateSuccess && (
-              <p className="update-success-message">
-                Medication updated successfully!
-              </p>
-            )}
-          </>
-        )}
+          <button onClick={() => setAddModalIsOpen(false)}>Close</button>
+        </Modal>
+        <Modal
+          isOpen={editModalIsOpen}
+          onRequestClose={() => setEditModalIsOpen(false)}
+          contentLabel="Edit Medication Modal"
+          style={{
+            overlay: {
+              backgroundColor: "rgba(0, 0, 0, 0.75)",
+            },
+            content: {
+              top: "50%",
+              left: "50%",
+              right: "auto",
+              bottom: "auto",
+              marginRight: "-50%",
+              transform: "translate(-50%, -50%)",
+            },
+          }}
+        >
+          {selectedMedication && (
+            <>
+              <EditMedicationForm
+                medicationId={selectedMedication.id}
+                medicationData={selectedMedication}
+                onEditMedication={handleEditMedication}
+              />
+              {updateSuccess && (
+                <p className="update-success-message">
+                  Medication updated successfully!
+                </p>
+              )}
+              <button onClick={() => setEditModalIsOpen(false)}>Close</button>
+            </>
+          )}
+        </Modal>
       </div>
     </div>
   );
