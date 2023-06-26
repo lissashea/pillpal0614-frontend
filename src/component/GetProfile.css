@@ -1,7 +1,7 @@
-@import url('https://fonts.cdnfonts.com/css/avenir');
+@import url("https://fonts.cdnfonts.com/css/avenir");
 
 * {
-  font-family: 'Avenir', sans-serif;
+  font-family: "Avenir", sans-serif;
 }
 
 .profile-container {
@@ -26,7 +26,6 @@
   border-radius: 5px;
   border: #336e70 solid 2px;
 }
-
 
 .profile-data {
   margin-top: 2rem;
@@ -63,13 +62,13 @@
   color: white;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: contents;
   font-size: 16px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 12px;
   padding: 10px 24px;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .addMedication.largeButton:hover {
@@ -125,11 +124,31 @@
   margin-bottom: 10px;
 }
 
+.addMedication.largeButton {
+  color: white;
+  background-color: #336e70;
+  text-align: center;
+  display: block;
+  font-size: 20px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin-left: auto;
+}
+
 @media screen and (max-width: 767px) {
   .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
   }
 
   .profile-data {
@@ -143,6 +162,16 @@
   .profile-table-container {
     display: none;
     /* Hide the table container and its contents */
+  }
+
+  .addMedication.largeButton {
+    color: white;
+    text-align: center;
+    display: contents;
+    font-size: 18px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-left: auto;
   }
 
   .profile-table {
@@ -174,20 +203,28 @@
   }
 
   .profile-table td:nth-child(1):before {
-    content: "Medication";
+    content: "Medication:";
   }
 
   .profile-table td:nth-child(2):before {
-    content: "Dosage";
+    content: "Dosage:";
   }
 
   .profile-table td:nth-child(3):before {
-    content: "Description";
+    content: "Description:";
   }
 
   .profile-table td:nth-child(4):before {
-    content: "Taken";
+    content: "Taken:";
   }
+
+  /* .profile-table td:nth-child(5):before {
+    content: "Edit Medication:";
+  } */
+
+  /* .profile-table td:nth-child(6):before {
+    content: "Delete Medication:";
+  } */
 
   .profile-table tbody tr:nth-child(even) {
     background-color: #f5f5f5;
@@ -224,8 +261,4 @@
     margin-bottom: 2rem;
     flex-wrap: wrap;
   }
-
- 
 }
-
-
