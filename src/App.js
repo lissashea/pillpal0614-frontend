@@ -9,6 +9,7 @@ import SignOut from "./component/SignOut.jsx";
 import Home from "./component/Home.jsx";
 import MedicationTable from "./component/MedicationTable.jsx";
 import { fetchProfileData } from "./services/apiConfig.js";
+import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
